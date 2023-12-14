@@ -17,6 +17,9 @@ Including another URLconf
 from django.urls import path
 from webapp import views
 
+from django.conf.urls.static import static
+from django.conf import settings
+
 urlpatterns = [
     # path('admin/', admin.site.urls),
     path('', views.home),
@@ -27,4 +30,4 @@ urlpatterns = [
     path('inYear', views.inYear),
     path('reportSearch', views.reportSearch),
     path('progressSearch', views.progressSearch),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
