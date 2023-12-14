@@ -30,4 +30,4 @@ urlpatterns = [
     path('inYear', views.inYear),
     path('reportSearch', views.reportSearch),
     path('progressSearch', views.progressSearch),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
