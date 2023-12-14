@@ -1,0 +1,109 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <form action="insert" method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="course" class="form-label">หลักสูตร</label>
+            <select class="form-select" name="course" required>
+                <option hidden selected value="">เลือกหลักสูตร</option>
+                <option value="1">MBA</option>
+                <option value="2">MBA.Mk</option>
+                <option value="3">IMBA</option>
+                <option value="4">M.Acc</option>
+                <option value="5">MPA</option>
+                <option value="6">Ph.D</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="studentId" class="form-label">รหัสนักศึกษา</label>
+            <input type="text" class="form-control" name="studentId">
+          </div>
+          <div class="mb-3">
+            <label for="studentName" class="form-label">ชื่อ-สกุล นักศึกษา/ ผู้สำเร็จการศึกษา</label>
+            <input type="text" class="form-control" name="studentName">
+          </div>
+          <div class="mb-3">
+            <label for="studentStatus" class="form-label">สถานะนักศึกษา</label>
+            <select class="form-select" name="status" required>
+                <option hidden selected value="">เลือกสถานะ</option>
+                <option value="1">กำลังศึกษา</option>
+                <option value="2">สำเร็จการศึกษา</option>
+                <option value="3">ไม่มาลงทะเบียน</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="edu" class="form-label">แผนการศึกษา</label>
+            <input type="text" class="form-control" name="edu">
+          </div>
+          <div class="mb-3">
+            <label for="adviser" class="form-label">อาจารย์ที่ปรึกษา</label>
+            <input type="text" class="form-control" name="adviser">
+          </div>
+          <div class="mb-3">
+            <label for="work" class="form-label">ชื่อผลงาน</label>
+            <input type="text" class="form-control" name="work">
+          </div>
+          <div class="mb-3">
+            <label for="public" class="form-label">ประเภทการเผยแพร่</label>
+            <select class="form-select" name="public" required>
+                <option hidden selected value="">เลือกประเภทการเผยแพร่</option>
+                <option value="1">วารสาร</option>
+                <option value="2">การประชุมวิชาการระดับชาติ</option>
+                <option value="3">การประชุมวิชาการระดับนานาชาติ</option>
+                <option value="4">ตีพิมพ์ลักษณะใดลักษณะหนึ่ง</option>
+            </select>
+            
+          </div>
+          <div class="mb-3">
+            <label for="journal" class="form-label">ฐานข้อมูลวารสาร</label>
+            <select class="form-select" name="journal">
+                <option hidden selected value="">เลือกฐานข้อมูลวารสาร</option>
+                <option value="0">-</option>
+                <option value="1">ฐานข้อมูลระดับนานาชาติอื่น</option>
+                <option value="2">TCI กลุ่ม 1</option>
+                <option value="3">Scopus</option>
+                <option value="4">WoS</option>
+                <option value="5">TCI กลุ่ม 2</option>
+                <option value="6">SSRN</option>
+                <option value="7">EBSCO</option>
+                <option value="8">ไม่มีอยู่ในฐานข้อมูล</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="implement" class="form-label">การนำไปใช้ในองค์กร</label>
+            <textarea class="form-control" name="implement" rows="3"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="meeting" class="form-label">ชื่อวารสาร/ชื่องานประชุม, สถานที่</label>
+            <textarea class="form-control" name="meeting" rows="3"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="from_date" class="form-label">วัน-เดือน-ปี เริ่มต้น</label>
+            <input type="date" class="form-control" name="from_date">
+          </div>
+          <div class="mb-3">
+            <label for="to_date" class="form-label">วัน-เดือน-ปี สิ้นสุด</label>
+            <input type="date" class="form-control" name="to_date">
+          </div>
+          <div class="mb-3">
+            <label for="year" class="form-label">ปีปฏิทิน</label>
+            <select class="form-select" id="ddlYears" name="year" required></select>
+          </div>
+          <button type="submit" class="btn btn-primary">บันทึก</button>
+    </form>
+    <script type="text/javascript">
+        window.onload = function () {
+            var ddlYears = document.getElementById("ddlYears");
+        
+            var currentYear = (new Date()).getFullYear();
+        
+            for (var i = 1950; i <= currentYear; i++) {
+                var option = document.createElement("OPTION");
+                option.innerHTML = i;
+                option.value = i;
+                ddlYears.appendChild(option);
+            }
+        };
+    </script>
+{% endblock %}

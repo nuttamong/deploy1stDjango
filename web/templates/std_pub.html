@@ -1,0 +1,90 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<table class="table table-warning table-striped-columns" style="margin-top: 20px;">
+    <tbody>
+    <tr>
+        <th scope="row">รหัสนักศึกษา</th>
+        <th scope="row">{{data.0.student_id}}</th>
+    </tr>
+    <tr>
+        <th scope="row">ชื่อ-นามสกุล</th>
+        <th scope="row">{{data.0.name}}</th>
+    </tr>
+    <tr>
+        <th scope="row">หลักสูตร</th>
+        <th scope="row">{{data.0.course}}</th>
+    </tr>
+    <tr>
+        <th scope="row">สถานะนักศึกษา</th>
+        <th scope="row">{{data.0.status}}</th>
+    </tr>
+    <tr>
+        <th scope="row">แผนการศึกษา</th>
+        <th scope="row">{{data.0.edu}}</th>
+    </tr>
+    <tr>
+        <th scope="row">อาจารย์ที่ปรึกษา</th>
+        <th scope="row">{{data.0.advisor}}</th>
+    </tr>
+    </tbody>
+</table>
+<table class="table table-warning table-striped" style="margin-top: 20px;">
+    <thead>
+    <tr>
+        <th scope="col">ชื่อผลงาน</th>
+        <th scope="col">ประเภทการเผยแพร่</th>
+        <th scope="col">ฐานข้อมูลวารสาร</th>
+        <th scope="col">การนำไปใช้ในองค์กร</th>
+        <th scope="col">ชื่อวารสาร/ชื่องานประชุม, สถานที่</th>
+        <th scope="col">วัน-เดือน-ปี เริ่มต้น</th>
+        <th scope="col">วัน-เดือน-ปี สิ้นสุด</th>
+        <th scope="col">ปีปฏิทิน</th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for d in data%}
+    <tr>
+        
+        <th scope="row">{{ d.work }}</th>
+        {% if d.public == 1 %}
+        <th scope="row">วารสาร</th>
+        {% if d.journal == 1 %}
+        <th scope="row">ฐานข้อมูลระดับนานาชาติอื่น</th>
+        {% elif d.journal == 2%}
+        <th scope="row">TCI กลุ่ม 1</th>
+        {% elif d.journal == 3%}
+        <th scope="row">Scopus</th>
+        {% elif d.journal == 4%}
+        <th scope="row">WoS</th>
+        {% elif d.journal == 5%}
+        <th scope="row">TCI กลุ่ม 2</th>
+        {% elif d.journal == 6%}
+        <th scope="row">SSRN</th>
+        {% elif d.journal == 7%}
+        <th scope="row">EBSCO</th>
+        {% else %}
+        <th scope="row">ไม่อยู่ในฐานข้อมูล</th>
+        {% endif %}
+        {% elif d.public == 2%}
+        <th scope="row">การประชุมวิชาการระดับชาติ</th>
+        <th scope="row"></th>
+        {% elif d.public == 3%}
+        <th scope="row">การประชุมวิชาการระดับนานาชาติ</th>
+        <th scope="row"></th>
+        {% else%}
+        <th scope="row">ตีพิมพ์ลักษณะใดลักษณะหนึ่ง</th>
+        <th scope="row"></th>
+        {% endif %}
+        
+        <th scope="row">{{ d.implemment }}</th>
+        <th scope="row">{{ d.meeting }}</th>
+        <th scope="row">{{ d.from_date }}</th>
+        <th scope="row">{{ d.to_date }}</th>
+        <th scope="row">{{ d.year }}</th>
+        
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

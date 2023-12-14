@@ -1,0 +1,94 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<form action="progressSearch" method="post">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-sm">
+            <div class="row">
+                <div class="col-sm">
+                    <h5>หลักสูตร</h5>
+                </div>
+                <div class="col-sm">
+                    <select class="form-select" name="course" required>
+                        <option hidden selected value="">เลือกหลักสูตร</option>
+                        <option value="1">MBA</option>
+                        <option value="2">MBA.Mk</option>
+                        <option value="3">IMBA</option>
+                        <option value="4">M.Acc</option>
+                        <option value="5">MPA</option>
+                        <option value="6">Ph.D</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm">
+            <div class="row">
+                <div class="col-sm">
+                    <h5>สถานะ</h5>
+                </div>
+                <div class="col-sm">
+                    <select class="form-select" name="status" required>
+                        <option hidden selected value="">เลือกสถานะ</option>
+                        <option value="1">กำลังศึกษา</option>
+                        <option value="2">สำเร็จการศึกษา</option>
+                        <option value="3">ไม่มาลงทะเบียน</option>
+                    </select>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-sm">
+            <div class="row">
+                <div class="col-sm">
+                    <h5>ปีที่มีการตีพิมพ์(เริ่มต้น)</h5>
+                </div>
+                <div class="col-sm">
+                    <select class="form-select" id="ddlYears" name="from_year" required></select>
+                </div>
+            </div>
+            
+        </div>
+        <div class="col-sm">
+            <div class="row">
+                <div class="col-sm">
+                    <h5>ปีที่มีการตีพิมพ์(สิ้นสุด)</h5>
+                </div>
+                <div class="col-sm">
+                    <select class="form-select" id="ddl2Years" name="to_year" required></select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">
+            <button type="submit" class="btn btn-info">ค้นหา</button>
+        </div>
+    </div>
+</form>
+<script type="text/javascript">
+    window.onload = function () {
+        var ddlYears = document.getElementById("ddlYears");
+        var ddl2Years = document.getElementById("ddl2Years");
+    
+        var currentYear = (new Date()).getFullYear();
+    
+        for (var i = 1950; i <= currentYear; i++) {
+            var option = document.createElement("OPTION");
+            option.innerHTML = i;
+            option.value = i;
+            ddlYears.appendChild(option);
+        }
+
+        for (var i = 1950; i <= currentYear; i++) {
+            var option2 = document.createElement("OPTION");
+            option2.innerHTML = i;
+            option2.value = i;
+            ddl2Years.appendChild(option2);
+        }
+    };
+</script>
+    {% block search %}
+
+    {% endblock %}
+{% endblock %}

@@ -1,0 +1,559 @@
+{% extends 'index.html' %}
+
+{% block search %}
+    <table class="table table-info table-striped" style="margin-top: 20px;">
+        <thead>
+        <tr>
+            <th scope="col">ประเภทการตีพิมพ์</th>
+            {% for year in years%}
+            <th scope="col">{{ year }}</th>
+            {% endfor %}
+            <th scope="col">total</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row">1.การประชุมวิชาการระดับชาติ</th>
+            {% for d, y in data1%}
+            <form action="inYear" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="course" value={{ course }}>
+                <input type="hidden" name="status" value={{ status }}>
+                <input type="hidden" name="year" value={{ y }}>
+                <input type="hidden" name="public" value="2">
+                <input type="hidden" name="journal" value="0">
+                {% if d > 0 %}
+                <th scope="col"><input type="submit" class="btn btn-outline-secondary" value={{ d }}></th>
+                {% else %}
+                <th scope="col"><input type="submit" class="btn btn-outline-secondary" value={{ d }} disabled></th>
+                {% endif %}
+            </form>
+            {% endfor %}
+            <td>{{total.0}}</td>
+        </tr>
+        <tr>
+            <th scope="row">2.การประชุมวิชาการระดับนานาชาติ</th>
+            {% for d, y in data2%}
+            <form action="inYear" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="course" value={{ course }}>
+                <input type="hidden" name="status" value={{ status }}>
+                <input type="hidden" name="year" value={{ y }}>
+                <input type="hidden" name="public" value="3">
+                <input type="hidden" name="journal" value="0">
+                {% if d > 0 %}
+                <th scope="col"><input type="submit" class="btn btn-outline-secondary" value={{ d }}></th>
+                {% else %}
+                <th scope="col"><input type="submit" class="btn btn-outline-secondary" value={{ d }} disabled></th>
+                {% endif %}
+            </form>
+            {% endfor %}
+            <td>{{total.1}}</td>
+        </tr>
+        <tr>
+            <th scope="row">3.ตีพิมพ์ลักษณะใดลักษณะหนึ่ง</th>
+            {% for d, y in data3%}
+            <form action="inYear" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="course" value={{ course }}>
+                <input type="hidden" name="status" value={{ status }}>
+                <input type="hidden" name="year" value={{ y }}>
+                <input type="hidden" name="public" value="4">
+                <input type="hidden" name="journal" value="0">
+                {% if d > 0 %}
+                <th scope="col"><input type="submit" class="btn btn-outline-secondary" value={{ d }}></th>
+                {% else %}
+                <th scope="col"><input type="submit" class="btn btn-outline-secondary" value={{ d }} disabled></th>
+                {% endif %}
+            </form>
+            {% endfor %}
+            <td>{{total.2}}</td>
+        </tr>
+        <tr>
+            <th scope="row">4.วารสาร Scopus</th>
+            {% for d, y in data4%}
+            <form action="inYear" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="course" value={{ course }}>
+                <input type="hidden" name="status" value={{ status }}>
+                <input type="hidden" name="year" value={{ y }}>
+                <input type="hidden" name="public" value="1">
+                <input type="hidden" name="journal" value="3">
+                {% if d > 0 %}
+                <th scope="col"><input type="submit" class="btn btn-outline-secondary" value={{ d }}></th>
+                {% else %}
+                <th scope="col"><input type="submit" class="btn btn-outline-secondary" value={{ d }} disabled></th>
+                {% endif %}
+            </form>
+            {% endfor %}
+            <td>{{total.3}}</td>
+        </tr>
+        <tr>
+            <th scope="row">5.วารสาร SSRN</th>
+            {% for d, y in data5%}
+            <form action="inYear" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="course" value={{ course }}>
+                <input type="hidden" name="status" value={{ status }}>
+                <input type="hidden" name="year" value={{ y }}>
+                <input type="hidden" name="public" value="1">
+                <input type="hidden" name="journal" value="6">
+                {% if d > 0 %}
+                <th scope="col"><input type="submit" class="btn btn-outline-secondary" value={{ d }}></th>
+                {% else %}
+                <th scope="col"><input type="submit" class="btn btn-outline-secondary" value={{ d }} disabled></th>
+                {% endif %}
+            </form>
+            {% endfor %}
+            <td>{{total.4}}</td>
+        </tr>
+        <tr>
+            <th scope="row">6.วารสาร TCI กลุ่ม 1</th>
+            {% for d, y in data6%}
+            <form action="inYear" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="course" value={{ course }}>
+                <input type="hidden" name="status" value={{ status }}>
+                <input type="hidden" name="year" value={{ y }}>
+                <input type="hidden" name="public" value="1">
+                <input type="hidden" name="journal" value="2">
+                {% if d > 0 %}
+                <th scope="col"><input type="submit" class="btn btn-outline-secondary" value={{ d }}></th>
+                {% else %}
+                <th scope="col"><input type="submit" class="btn btn-outline-secondary" value={{ d }} disabled></th>
+                {% endif %}
+            </form>
+            {% endfor %}
+            <td>{{total.5}}</td>
+        </tr>
+        <tr>
+            <th scope="row">7.วารสาร TCI กลุ่ม 2</th>
+            {% for d, y in data7%}
+            <form action="inYear" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="course" value={{ course }}>
+                <input type="hidden" name="status" value={{ status }}>
+                <input type="hidden" name="year" value={{ y }}>
+                <input type="hidden" name="public" value="1">
+                <input type="hidden" name="journal" value="5">
+                {% if d > 0 %}
+                <th scope="col"><input type="submit" class="btn btn-outline-secondary" value={{ d }}></th>
+                {% else %}
+                <th scope="col"><input type="submit" class="btn btn-outline-secondary" value={{ d }} disabled></th>
+                {% endif %}
+            </form>
+            {% endfor %}
+            <td>{{total.6}}</td>
+        </tr>
+        <tr>
+            <th scope="row">8.วารสาร WoS</th>
+            {% for d, y in data8%}
+            <form action="inYear" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="course" value={{ course }}>
+                <input type="hidden" name="status" value={{ status }}>
+                <input type="hidden" name="year" value={{ y }}>
+                <input type="hidden" name="public" value="1">
+                <input type="hidden" name="journal" value="4">
+                {% if d > 0 %}
+                <th scope="col"><input type="submit" class="btn btn-outline-secondary" value={{ d }}></th>
+                {% else %}
+                <th scope="col"><input type="submit" class="btn btn-outline-secondary" value={{ d }} disabled></th>
+                {% endif %}
+            </form>
+            {% endfor %}
+            <td>{{total.7}}</td>
+        </tr>
+        <tr>
+            <th scope="row">9.วาสาร EBSCO</th>
+            {% for d, y in data9%}
+            <form action="inYear" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="course" value={{ course }}>
+                <input type="hidden" name="status" value={{ status }}>
+                <input type="hidden" name="year" value={{ y }}>
+                <input type="hidden" name="public" value="1">
+                <input type="hidden" name="journal" value="7">
+                {% if d > 0 %}
+                <th scope="col"><input type="submit" class="btn btn-outline-secondary" value={{ d }}></th>
+                {% else %}
+                <th scope="col"><input type="submit" class="btn btn-outline-secondary" value={{ d }} disabled></th>
+                {% endif %}
+            </form>
+            {% endfor %}
+            <td>{{total.8}}</td>
+        </tr>
+        <tr>
+            <th scope="row">10.วารสาร ฐานข้อมูลระดับนานาชาติอื่น</th>
+            {% for d, y in data10%}
+            <form action="inYear" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="course" value={{ course }}>
+                <input type="hidden" name="status" value={{ status }}>
+                <input type="hidden" name="year" value={{ y }}>
+                <input type="hidden" name="public" value="1">
+                <input type="hidden" name="journal" value="1">
+                {% if d > 0 %}
+                <th scope="col"><input type="submit" class="btn btn-outline-secondary" value={{ d }}></th>
+                {% else %}
+                <th scope="col"><input type="submit" class="btn btn-outline-secondary" value={{ d }} disabled></th>
+                {% endif %}
+            </form>
+            {% endfor %}
+            <td>{{total.9}}</td>
+        </tr>
+        <tr>
+            <th scope="row">11.วารสาร ไม่อยู่ในฐานข้อมูล</th>
+            {% for d, y in data11%}
+            <form action="inYear" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="course" value={{ course }}>
+                <input type="hidden" name="status" value={{ status }}>
+                <input type="hidden" name="year" value={{ y }}>
+                <input type="hidden" name="public" value="1">
+                <input type="hidden" name="journal" value="8">
+                {% if d > 0 %}
+                <th scope="col"><input type="submit" class="btn btn-outline-secondary" value={{ d }}></th>
+                {% else %}
+                <th scope="col"><input type="submit" class="btn btn-outline-secondary" value={{ d }} disabled></th>
+                {% endif %}
+            </form>
+            {% endfor %}
+            <td>{{total.10}}</td>
+        </tr>
+        <tr>
+            <th scope="row">Grand Total</th>
+            {% for d in grandTotal%}
+            <th scope="col">{{ d }}</th>
+            {% endfor %}
+            <td>{{total.11}}</td>
+        </tr>
+        </tbody>
+    </table>
+    <div>
+    <canvas id="pieChart" style="width:100%;max-width:700px"></canvas>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script>
+    var xValues = ["การประชุมวิชาการระดับชาติ", "การประชุมวิชาการระดับนานาชาติ", "ตีพิมพ์ลักษณะใดลักษณะหนึ่ง", "วารสาร Scopus", "วารสาร SSRN", "วารสาร TCI กลุ่ม 1", "วารสาร TCI กลุ่ม 2", "วารสาร WoS", "วาสาร EBSCO", "วารสาร ฐานข้อมูลระดับนานาชาติอื่น", "วารสาร ไม่อยู่ในฐานข้อมูล"];
+    var yValues = ["{% for i in totalPie %}{{ i }}", "{% endfor %}"];
+    var barColors = [
+  "#b91d47",
+  "#00aba9",
+  "#2b5797",
+  "#e8c3b9",
+  "#1e7145",
+  "#5a1234",
+  "#3b7787",
+  "#c8c3b9",
+  "#be7145",
+  "#affba9",
+  "#cb5797"
+];
+
+    new Chart("pieChart", {
+    type: "pie",
+    data: {
+        labels: xValues,
+        datasets: [{
+            backgroundColor: barColors,
+            data: yValues
+        }]
+    },
+    options: {
+        responsive: true,
+        title: {
+            display: true,
+            text: "ระหว่างปี {{ from_year }} - {{to_year}}"
+        }
+  }
+    });
+    </script>
+    <hr>
+    <div>
+        <canvas id="barChart" style="width:100%;max-width:700px"></canvas>
+    </div>
+    <script>
+        var data = {
+            labels: ["{% for i in years %}{{ i }}", "{% endfor %}"],
+            datasets: [
+                {
+                    label: "การประชุมวิชาการระดับชาติ",
+                    backgroundColor: "blue",
+                    data: ["{% for i in ddata1 %}{{ i }}", "{% endfor %}"]
+                },
+                {
+                    label: "การประชุมวิชาการระดับนานาชาติ",
+                    backgroundColor: "red",
+                    data: ["{% for i in ddata2 %}{{ i }}", "{% endfor %}"]
+                },
+                {
+                    label:"ตีพิมพ์ลักษณะใดลักษณะหนึ่ง",
+                    backgroundColor: "green",
+                    data: ["{% for i in ddata3 %}{{ i }}", "{% endfor %}"]
+                },
+                {
+                    label: "วารสาร Scopus",
+                    backgroundColor: "yellow",
+                    data: ["{% for i in ddata4 %}{{ i }}", "{% endfor %}"]
+                },
+                {
+                    label: "วารสาร SSRN",
+                    backgroundColor: "black",
+                    data: ["{% for i in ddata5 %}{{ i }}", "{% endfor %}"]
+                },
+                {
+                    label: "วารสาร TCI กลุ่ม 1",
+                    backgroundColor: "brown",
+                    data: ["{% for i in ddata6 %}{{ i }}", "{% endfor %}"]
+                },
+                {
+                    label: "วารสาร TCI กลุ่ม 2",
+                    backgroundColor: "orange",
+                    data: ["{% for i in ddata7 %}{{ i }}", "{% endfor %}"]
+                },
+                {
+                    label: "วารสาร WoS",
+                    backgroundColor: "purple",
+                    data: ["{% for i in ddata8 %}{{ i }}", "{% endfor %}"]
+                },
+                {
+                    label: "วาสาร EBSCO",
+                    backgroundColor: "darkgreen",
+                    data: ["{% for i in ddata9 %}{{ i }}", "{% endfor %}"]
+                },
+                {
+                    label: "วารสาร ฐานข้อมูลระดับนานาชาติอื่น",
+                    backgroundColor: "lightblue",
+                    data: ["{% for i in ddata10 %}{{ i }}", "{% endfor %}"]
+                },
+                {
+                    label: "วารสาร ไม่อยู่ในฐานข้อมูล",
+                    backgroundColor: "lightgreen",
+                    data: ["{% for i in ddata11 %}{{ i }}", "{% endfor %}"]
+                }
+            ]
+        };
+        new Chart("barChart", {
+            type: 'bar',
+            data: data,
+            options: {
+                barValueSpacing: 20,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            min: 0,
+                        }
+                    }]
+                }
+            }
+        });
+        </script>
+        <hr>
+        <div>
+            <canvas id="lineChart" style="width:100%;max-width:700px"></canvas>
+        </div>
+        <script>
+            var data1 = {
+                label: "การประชุมวิชาการระดับชาติ",
+                data: ["{% for i in ddata1 %}{{ i }}", "{% endfor %}"],
+                lineTension: 0,
+                fill: false,
+                borderColor: "blue"
+            };
+
+            var data2 = {
+                label: "การประชุมวิชาการระดับนานาชาติ",
+                data: ["{% for i in ddata2 %}{{ i }}", "{% endfor %}"],
+                lineTension: 0,
+                fill: false,
+                borderColor: "red"
+            };
+            var data3 = {
+                label:"ตีพิมพ์ลักษณะใดลักษณะหนึ่ง",
+                data: ["{% for i in ddata3 %}{{ i }}", "{% endfor %}"],
+                lineTension: 0,
+                fill: false,
+                borderColor: "green"
+            };
+
+            var data4 = {
+                label: "วารสาร Scopus",
+                data: ["{% for i in ddata4 %}{{ i }}", "{% endfor %}"],
+                lineTension: 0,
+                fill: false,
+                borderColor: "yellow"
+            };
+
+            var data5 = {
+                label: "วารสาร SSRN",
+                data: ["{% for i in ddata5 %}{{ i }}", "{% endfor %}"],
+                lineTension: 0,
+                fill: false,
+                borderColor: "black"
+            };
+            var data6 = {
+                label: "วารสาร TCI กลุ่ม 1",
+                data: ["{% for i in ddata6 %}{{ i }}", "{% endfor %}"],
+                lineTension: 0,
+                fill: false,
+                borderColor: "brown"
+            };
+
+            var data7 = {
+                label: "วารสาร TCI กลุ่ม 2",
+                data: ["{% for i in ddata7 %}{{ i }}", "{% endfor %}"],
+                lineTension: 0,
+                fill: false,
+                borderColor: "orange"
+            };
+            var data8 = {
+                label: "วารสาร WoS",
+                data: ["{% for i in ddata8 %}{{ i }}", "{% endfor %}"],
+                lineTension: 0,
+                fill: false,
+                borderColor: "purple"
+            };
+
+            var data9 = {
+                label: "วาสาร EBSCO",
+                data: ["{% for i in ddata9 %}{{ i }}", "{% endfor %}"],
+                lineTension: 0,
+                fill: false,
+                borderColor: "darkgreen"
+            };
+
+            var data10 = {
+                label: "วารสาร ฐานข้อมูลระดับนานาชาติอื่น",
+                data: ["{% for i in ddata10 %}{{ i }}", "{% endfor %}"],
+                lineTension: 0,
+                fill: false,
+                borderColor: "lightblue"
+            };
+            var data11 = {
+                label: "วารสาร ไม่อยู่ในฐานข้อมูล",
+                data: ["{% for i in ddata11 %}{{ i }}", "{% endfor %}"],
+                lineTension: 0,
+                fill: false,
+                borderColor: "lightgreen"
+            };
+
+
+            var yearData = {
+            labels: ["{% for i in years %}{{ i }}", "{% endfor %}"],
+            datasets: [data1, data2, data3, data4, data5, data6, data7, data8, data9, data10, data11]
+            };
+
+            var chartOptions = {
+            legend: {
+                display: true,
+                position: 'top',
+                labels: {
+                boxWidth: 80,
+                fontColor: 'black'
+                }
+            }
+            };
+            new Chart("lineChart", {
+                type: 'line',
+                data: yearData,
+                options: chartOptions
+            });
+            </script>
+            <hr>
+            <div>
+                <canvas id="stackBarChart" style="width:100%;max-width:700px"></canvas>
+            </div>
+            <script>
+                var data = {
+                    labels: ["{% for i in years %}{{ i }}", "{% endfor %}"],
+                    datasets: [
+                        {
+                            label: "การประชุมวิชาการระดับชาติ",
+                            backgroundColor: "blue",
+                            data: ["{% for i in ddata1 %}{{ i }}", "{% endfor %}"]
+                        },
+                        {
+                            label: "การประชุมวิชาการระดับนานาชาติ",
+                            backgroundColor: "red",
+                            data: ["{% for i in ddata2 %}{{ i }}", "{% endfor %}"]
+                        },
+                        {
+                            label:"ตีพิมพ์ลักษณะใดลักษณะหนึ่ง",
+                            backgroundColor: "green",
+                            data: ["{% for i in ddata3 %}{{ i }}", "{% endfor %}"]
+                        },
+                        {
+                            label: "วารสาร Scopus",
+                            backgroundColor: "yellow",
+                            data: ["{% for i in ddata4 %}{{ i }}", "{% endfor %}"]
+                        },
+                        {
+                            label: "วารสาร SSRN",
+                            backgroundColor: "black",
+                            data: ["{% for i in ddata5 %}{{ i }}", "{% endfor %}"]
+                        },
+                        {
+                            label: "วารสาร TCI กลุ่ม 1",
+                            backgroundColor: "brown",
+                            data: ["{% for i in ddata6 %}{{ i }}", "{% endfor %}"]
+                        },
+                        {
+                            label: "วารสาร TCI กลุ่ม 2",
+                            backgroundColor: "orange",
+                            data: ["{% for i in ddata7 %}{{ i }}", "{% endfor %}"]
+                        },
+                        {
+                            label: "วารสาร WoS",
+                            backgroundColor: "purple",
+                            data: ["{% for i in ddata8 %}{{ i }}", "{% endfor %}"]
+                        },
+                        {
+                            label: "วาสาร EBSCO",
+                            backgroundColor: "darkgreen",
+                            data: ["{% for i in ddata9 %}{{ i }}", "{% endfor %}"]
+                        },
+                        {
+                            label: "วารสาร ฐานข้อมูลระดับนานาชาติอื่น",
+                            backgroundColor: "lightblue",
+                            data: ["{% for i in ddata10 %}{{ i }}", "{% endfor %}"]
+                        },
+                        {
+                            label: "วารสาร ไม่อยู่ในฐานข้อมูล",
+                            backgroundColor: "lightgreen",
+                            data: ["{% for i in ddata11 %}{{ i }}", "{% endfor %}"]
+                        }
+                    ]
+                };
+                new Chart("stackBarChart", {
+                    type: 'bar',
+                    data: data,
+                    options: {
+                        tooltips: {
+                            displayColors: true,
+                            callbacks:{
+                            mode: 'x',
+                            },
+                        },
+                        scales: {
+                            xAxes: [{
+                            stacked: true,
+                            gridLines: {
+                                display: false,
+                            }
+                            }],
+                            yAxes: [{
+                            stacked: true,
+                            ticks: {
+                                beginAtZero: true,
+                            },
+                            type: 'linear',
+                            }]
+                        },
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            legend: { position: 'bottom' },
+}
+                });
+                </script>
+{% endblock %}
