@@ -31,4 +31,3 @@ urlpatterns = [
     path('reportSearch', views.reportSearch),
     path('progressSearch', views.progressSearch),
 ]
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

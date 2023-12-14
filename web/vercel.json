@@ -1,23 +1,31 @@
 {
+    "version": 2,
     "builds": [
-        {
-          "src": "web/asgi.py",
-          "use": "@vercel/python",
-          "config": { "maxLambdaSize": "15mb", "runtime": "python3.11" }
-        },
-        {
-          "src": "build_files.sh",
-          "use": "@vercel/static"
+      {
+        "src": "web/wsgi.py",
+        "use": "@vercel/python",
+        "config": {
+          "maxLambdaSize": "15mb",
+          "runtime": "python3.11"
         }
-      ],
-      "routes": [
-        {
-          "src": "/staticfiles/(.*)",
-          "dest": "/staticfiles/$1"
-        },
-        {
-          "src": "/(.*)",
-          "dest": "web/asgi.py"
+      },
+      {
+        "src": "build_file.sh",
+        "use": "@vercel/static-build",
+        "config": {
+          "distDir": "staticfiles"
         }
-      ]
-}
+      }
+    ],
+    "routes": [
+      {
+        "src": "/static/(.*)",
+        "dest": "/static/$1"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "web/wsgi.py"
+      }
+    ],
+    "outputDirectory": "staticfiles"
+  }
